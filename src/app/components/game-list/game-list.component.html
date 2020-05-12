@@ -1,0 +1,20 @@
+<table border="1">
+  <thead>
+    <tr>
+      <th>Image</th>
+      <th>Name</th>
+      <th>Developer</th>
+      <th>Price</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let game of games">
+      <td>
+        <img src="{{ game.imageUrl }}" height="75px" alt="Game Poster" />
+      </td>
+      <td>{{ game.name }}</td>
+      <td>{{ game.developer }}</td>
+      <td>{{ game.price | currency: "EUR" }}</td>
+    </tr>
+  </tbody>
+</table>
