@@ -12,9 +12,10 @@ export class GameService {
 
   constructor(private httpClient: HttpClient) {}
 
-  getGames(): Observable<Game[]> {
+  getGames(categoryId: number): Observable<Game[]> {
+    const searchUrl = `${this.baseUrl}/search/category-id?id=${categoryId}`;
     return this.httpClient
-      .get<GetResponseGames>(this.baseUrl)
+      .get<GetResponseGames>(searchUrl)
       .pipe(map((res) => res._embedded.games));
   }
 }
