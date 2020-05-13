@@ -3,12 +3,14 @@ import { HttpClient } from "@angular/common/http";
 import { Observable } from "rxjs";
 import { map } from "rxjs/operators";
 import { Game } from "../common/game";
+import { GameCategory } from "../common/game-category";
 
 @Injectable({
   providedIn: "root",
 })
 export class GameService {
   private baseUrl = "http://localhost:8080/api/v1/games";
+  private categoryUrl = "http://localhost:8080/api/v1/game-category";
 
   constructor(private httpClient: HttpClient) {}
 
@@ -18,10 +20,22 @@ export class GameService {
       .get<GetResponseGames>(searchUrl)
       .pipe(map((res) => res._embedded.games));
   }
+
+  getGameCategories(): Observable<GameCategory[]> {
+    return this.httpClient
+      .get<GetResponseGameCategory>(this.categoryUrl)
+      .pipe(map((res) => res._embedded.gameCategory));
+  }
 }
 
 interface GetResponseGames {
   _embedded: {
     games: Game[];
+  };
+}
+
+interface GetResponseGameCategory {
+  _embedded: {
+    gameCategory: GameCategory[];
   };
 }

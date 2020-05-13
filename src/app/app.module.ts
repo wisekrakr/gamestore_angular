@@ -7,6 +7,7 @@ import { AppComponent } from "./app.component";
 import { GameListComponent } from "./components/game-list/game-list.component";
 import { GameService } from "./services/game.service";
 import { PageNotFoundComponent } from "./components/page-not-found/page-not-found.component";
+import { GameCategoryComponent } from './components/game-category/game-category.component';
 
 const routes: Routes = [
   { path: "games", component: GameListComponent },
@@ -16,7 +17,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  declarations: [AppComponent, GameListComponent, PageNotFoundComponent],
+  declarations: [AppComponent, GameListComponent, PageNotFoundComponent, GameCategoryComponent],
   imports: [BrowserModule, HttpClientModule, RouterModule.forRoot(routes)],
   providers: [GameService],
   bootstrap: [AppComponent],
