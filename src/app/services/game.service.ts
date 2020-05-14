@@ -16,6 +16,10 @@ export class GameService {
 
   getGames(categoryId: number): Observable<Game[]> {
     const searchUrl = `${this.baseUrl}/search/category-id?id=${categoryId}`;
+    return this.getGamesList(searchUrl);
+  }
+
+  private getGamesList(searchUrl: string): Observable<Game[]> {
     return this.httpClient
       .get<GetResponseGames>(searchUrl)
       .pipe(map((res) => res._embedded.games));
@@ -25,6 +29,11 @@ export class GameService {
     return this.httpClient
       .get<GetResponseGameCategory>(this.categoryUrl)
       .pipe(map((res) => res._embedded.gameCategory));
+  }
+
+  seachGames(keyword: string): Observable<Game[]> {
+    const searchUrl = `${this.baseUrl}/search/searchbykeyword?name=${keyword}`;
+    return this.getGamesList(searchUrl);
   }
 }
 

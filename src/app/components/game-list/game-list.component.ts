@@ -12,6 +12,7 @@ import { ActivatedRoute } from "@angular/router";
 export class GameListComponent implements OnInit {
   games: Game[];
   currentCategoryId: number;
+  searchMode: boolean;
 
   constructor(
     private gameService: GameService,
@@ -25,6 +26,16 @@ export class GameListComponent implements OnInit {
   }
 
   listGames() {
+    this.searchMode = this.activatedRoute.snapshot.paramMap.has("keyword");
+
+    if (this.searchMode) {
+      this.handleSearchGames();
+    } else {
+      this.handleListGames();
+    }
+  }
+
+  handleListGames() {
     const hasCategoryId: boolean = this.activatedRoute.snapshot.paramMap.has(
       "id"
     );
@@ -38,5 +49,15 @@ export class GameListComponent implements OnInit {
     this.gameService
       .getGames(this.currentCategoryId)
       .subscribe((data) => (this.games = data));
+  }
+
+  handleSearchGames() {
+    const keyword: string = this.activatedRoute.snapshot.paramMap.get(
+      "keyword"
+    );
+
+    this.gameService.seachGames(keyword).subscribe((data) => {
+      this.games = data;
+    });
   }
 }
