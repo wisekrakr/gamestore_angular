@@ -73,15 +73,17 @@
     <div class="row">
       <div class="col-lg-4 col-md-6 mb-4" *ngFor="let game of games">
         <div class="card h-100">
-          <a href="#"
+          <a routerLink="/games/{{ game.id }}"
             ><img
               class="card-img-top img-responsive"
               src="{{ game.imageUrl }}"
+              width="250"
+              height="300"
               alt=""
           /></a>
           <div class="card-body">
             <h4 class="card-title">
-              <a href="#">{{ game.name }}</a>
+              <a routerLink="/games/{{ game.id }}">{{ game.name }}</a>
             </h4>
             <h5>{{ game.price | currency: "EUR" }}</h5>
             <p class="card-text text-truncate">

@@ -35,6 +35,11 @@ export class GameService {
     const searchUrl = `${this.baseUrl}/search/searchbykeyword?name=${keyword}`;
     return this.getGamesList(searchUrl);
   }
+
+  getGame(gameId: number): Observable<Game> {
+    const gameDetailsUrl = `${this.baseUrl}/${gameId}`;
+    return this.httpClient.get<Game>(gameDetailsUrl);
+  }
 }
 
 interface GetResponseGames {

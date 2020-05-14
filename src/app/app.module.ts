@@ -9,9 +9,11 @@ import { GameService } from "./services/game.service";
 import { PageNotFoundComponent } from "./components/page-not-found/page-not-found.component";
 import { GameCategoryComponent } from "./components/game-category/game-category.component";
 import { SearchComponent } from "./components/search/search.component";
+import { GameDetailsComponent } from "./components/game-details/game-details.component";
 
 const routes: Routes = [
   { path: "games", component: GameListComponent },
+  { path: "games/:id", component: GameDetailsComponent },
   { path: "category/:id", component: GameListComponent },
   { path: "search/:keyword", component: GameListComponent },
   { path: "", redirectTo: "/games", pathMatch: "full" },
@@ -25,6 +27,7 @@ const routes: Routes = [
     PageNotFoundComponent,
     GameCategoryComponent,
     SearchComponent,
+    GameDetailsComponent,
   ],
   imports: [BrowserModule, HttpClientModule, RouterModule.forRoot(routes)],
   providers: [GameService],
